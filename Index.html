@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gaming Top-Up</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #080b14;
+      color: white;
+    }
+
+    header {
+      background: #111827;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid #27324a;
+    }
+
+    header h1 {
+      color: #00e5ff;
+      font-size: 30px;
+    }
+
+    header p {
+      color: #aaa;
+      margin-top: 6px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 45px 20px;
+      background: linear-gradient(135deg, #10182d, #080b14);
+    }
+
+    .hero h2 {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .hero span {
+      color: #00e5ff;
+    }
+
+    .hero p {
+      color: #bbb;
+      margin-bottom: 25px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #111827;
+      border: 1px solid #26334d;
+      border-radius: 15px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 18px;
+      color: #00e5ff;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px;
+      margin: 8px 0 15px;
+      border-radius: 8px;
+      border: 1px solid #374151;
+      background: #0b1020;
+      color: white;
+      font-size: 16px;
+    }
+
+    .packages {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .package {
+      background: #0b1020;
+      border: 1px solid #334155;
+      padding: 18px;
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .package:hover {
+      border-color: #00e5ff;
+    }
+
+    .package strong {
+      display: block;
+      color: #00e5ff;
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #00bcd4;
+      color: #001018;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background: #00e5ff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #777;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 500px) {
+      .packages {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h2 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🎮 GAMING TOP-UP</h1>
+    <p>Fast • Simple • Secure</p>
+  </header>
+
+  <section class="hero">
+    <h2>Top-Up Your <span>Game</span></h2>
+    <p>Choose your game and select a top-up package.</p>
+  </section>
+
+  <div class="container">
+
+    <div class="card">
+      <h3>🎮 Select Game</h3>
+
+      <select id="game">
+        <option>Free Fire</option>
+        <option>Free Fire MAX</option>
+        <option>PUBG Mobile</option>
+        <option>Mobile Legends</option>
+      </select>
+    </div>
+
+    <div class="card">
+      <h3>👤 Player Information</h3>
+
+      <input type="text" id="playerId"
+        placeholder="Enter Player ID">
+
+      <input type="text" id="nickname"
+        placeholder="Enter Nickname">
+    </div>
+
+    <div class="card">
+      <h3>💎 Choose Package</h3>
+
+      <div class="packages">
+
+        <div class="package" onclick="selectPackage('100 Diamonds')">
+          <strong>💎 100</strong>
+          Diamonds
+        </div>
+
+        <div class="package" onclick="selectPackage('310 Diamonds')">
+          <strong>💎 310</strong>
+          Diamonds
+        </div>
+
+        <div class="package" onclick="selectPackage('520 Diamonds')">
+          <strong>💎 520</strong>
+          Diamonds
+        </div>
+
+        <div class="package" onclick="selectPackage('1060 Diamonds')">
+          <strong>💎 1060</strong>
+          Diamonds
+        </div>
+
+      </div>
+
+      <p id="selected"
+         style="margin-top:15px;color:#00e5ff;">
+        No package selected
+      </p>
+
+      <button class="btn" onclick="orderNow()">
+        🚀 Continue
+      </button>
+    </div>
+
+  </div>
+
+  <footer>
+    © 2026 Gaming Top-Up
+  </footer>
+
+  <script>
+    let selectedPackage = "";
+
+    function selectPackage(packageName) {
+      selectedPackage = packageName;
+      document.getElementById("selected").innerText =
+        "Selected: " + packageName;
+    }
+
+    function orderNow() {
+      const game = document.getElementById("game").value;
+      const playerId = document.getElementById("playerId").value;
+      const nickname = document.getElementById("nickname").value;
+
+      if (!playerId || !nickname || !selectedPackage) {
+        alert("Please select a package and enter your Player ID and Nickname.");
+        return;
+      }
+
+      alert(
+        "Order selected!\\n\\n" +
+        "Game: " + game + "\\n" +
+        "Player ID: " + playerId + "\\n" +
+        "Package: " + selectedPackage
+      );
+    }
+  </script>
+
+</body>
+</html>
